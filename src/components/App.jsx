@@ -10,6 +10,7 @@ export class App extends Component {
     keyword: '',
     images: [],
   };
+
   handleSubmit = values => {
     this.setState({ keyword: values });
   };
@@ -17,10 +18,9 @@ export class App extends Component {
     if (prevState.keyword !== this.state.keyword) {
       axios
         .get(
-          `https://pixabay.com/api/?key=39980960-8181afd9891da861448a3d5ca&q=${this.state.keyword}`
+          `https://pixabay.com/api/?key=39980960-8181afd9891da861448a3d5ca&q=${this.state.keyword}&per_page=12`
         )
         .then(response => {
-          console.log(response.data.hits);
           this.setState({ images: response.data.hits });
         })
         .catch(function (error) {

@@ -1,3 +1,4 @@
+import { AiOutlineSearch } from 'react-icons/ai';
 import { Component } from 'react';
 import { Field, Formik, Form } from 'formik';
 import css from './SearchBar.module.css';
@@ -14,6 +15,7 @@ export class SearchBar extends Component {
         <Formik initialValues={initialValue} onSubmit={this.handleSubmit}>
           <Form className={css.form} autoComplete="off">
             <button type="submit" className={css.button}>
+              <AiOutlineSearch className={css.svg} size={25} />
               <span className={css.buttonLabel}>Search</span>
             </button>
             <label className="label" htmlFor="keyword">
