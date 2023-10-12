@@ -1,4 +1,11 @@
 import css from './ImageGallery.module.css';
-export function ImageGallery({ children }) {
-  return <ul className={css.gallery}>{children}</ul>;
+import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
+export function ImageGallery({ images, onClick }) {
+  return (
+    <ul className={css.gallery}>
+      {images.map(img => (
+        <ImageGalleryItem key={img.id} image={img} onClick={onClick} />
+      ))}
+    </ul>
+  );
 }

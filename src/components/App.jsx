@@ -1,20 +1,30 @@
 import { Component } from 'react';
 import { SearchBar } from './SearchBar/SearchBar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
-import { ImageGalleryItem } from './ImageGalleryItem/ImageGalleryItem';
 import { Button } from './Button/Button';
+import { ModalWindow } from './Modal/Modal';
+import { findImages } from './api';
 import axios from 'axios';
 
 export class App extends Component {
   state = {
     keyword: '',
     images: [],
+    isModalOpen: false,
+    largeUrl: '',
   };
-
+  openModal = data => {
+    console.log(data);
+    this.setState({ largeUrl: data });
+    this.setState({ isModalOpen: true });
+  };
+  closeModal = () => {
+    this.setState({ isModalOpen: false });
+  };
   handleSubmit = values => {
     this.setState({ keyword: values });
   };
-  componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(prevProps, prevState) {
     if (prevState.keyword !== this.state.keyword) {
       axios
         .get(
@@ -26,6 +36,13 @@ export class App extends Component {
         .catch(function (error) {
           console.log(error);
         });
+
+      // try {
+      //   const images = await findImages();
+      //   this.setState({ images: images });
+      // } catch (err) {
+      //   console.log(err);
+      // }
     }
   }
 
@@ -33,10 +50,13 @@ export class App extends Component {
     return (
       <>
         <SearchBar onSubmit={this.handleSubmit} />
-        <ImageGallery>
-          <ImageGalleryItem images={this.state.images} />
-        </ImageGallery>
+        <ImageGallery images={this.state.images} onClick={this.openModal} />
         <Button />
+        <ModalWindow
+          img={this.state.largeUrl}
+          isOpen={this.state.isModalOpen}
+          isClose={this.closeModal}
+        />
       </>
     );
   }
