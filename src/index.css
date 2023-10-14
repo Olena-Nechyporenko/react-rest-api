@@ -7,6 +7,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding-bottom: 20px;
 }
 
 code {
@@ -21,4 +22,7 @@ ul {
 img {
   display: block;
   max-width: 100%;
+}
+.errorMessage {
+  font-size: 30px;
 }

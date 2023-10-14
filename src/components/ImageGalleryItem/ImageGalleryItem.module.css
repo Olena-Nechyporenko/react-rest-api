@@ -13,3 +13,23 @@
   transform: scale(1.03);
   cursor: zoom-in;
 }
+.modalImage {
+  object-fit: cover;
+}
+/* .overlay {
+  position: fixed;
+  top: 70;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal {
+  padding-top: 80px;
+  max-width: calc(100vw - 48px);
+  max-height: calc(100vh - 24px);
+} */

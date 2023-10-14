@@ -1,5 +1,5 @@
 import css from './Button.module.css';
-export function Button({ children, onClick, ...allyProps }) {
+export function Button({ onClick }) {
   return (
     <div className={css.buttonWrapper}>
       <button
