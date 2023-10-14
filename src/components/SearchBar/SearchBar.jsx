@@ -18,7 +18,7 @@ export class SearchBar extends Component {
               <AiOutlineSearch className={css.svg} size={25} />
               <span className={css.buttonLabel}>Search</span>
             </button>
-            <label className="label" htmlFor="keyword">
+            <label className={css.label} htmlFor="keyword">
               <Field
                 className={css.input}
                 type="text"

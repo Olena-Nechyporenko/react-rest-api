@@ -55,6 +55,9 @@
   clip-path: inset(50%);
   border: 0;
 }
+.label {
+  width: 500px;
+}
 .input {
   display: inline-block;
   width: 100%;
