@@ -13,6 +13,7 @@ export class App extends Component {
     loading: false,
     error: false,
     page: 1,
+    totalPages: 1,
   };
 
   async componentDidUpdate(prevProps, prevState) {
@@ -33,10 +34,12 @@ export class App extends Component {
           );
         }
         toast.success(`We  have found images`);
+        const pages = Math.ceil(response.totalHits / 12);
         this.setState(prevState => {
           return {
             images: [...prevState.images, ...response.hits],
             loadMore: true,
+            totalPages: pages,
           };
         });
       } catch (error) {
@@ -56,14 +59,16 @@ export class App extends Component {
   };
 
   render() {
-    const { images, error, loading } = this.state;
+    const { images, error, loading, page, totalPages } = this.state;
     return (
       <>
         <SearchBar onSubmit={this.handleSubmit} />
         {error && <span className="errorMessage">Something went wrong!</span>}
         <ImageGallery imagesArray={images} onClick={this.openModal} />
         {loading && <Loader />}
-        {images.length > 0 && <Button onClick={this.loadMore} />}
+        {images.length > 0 && page !== totalPages && (
+          <Button onClick={this.loadMore} />
+        )}
         <Toaster position="top-right" />
       </>
     );
